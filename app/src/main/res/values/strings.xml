@@ -1,4 +1,36 @@
 <resources>
     <string name="app_name">BloodSearch</string>
     <string name="logo">logo</string>
+    <string name="add_donor">Add Donor</string>
+    <string name="active_request">Active Request</string>
+    <string name="add_request">Add Request</string>
+    <string name="blood_banks">Blood Banks</string>
+    <string name="share">Share</string>
+    <string name="todo">TODO</string>
+    <string name="donors">Donors</string>
+    <string name="user_profile">user_profile</string>
+    <string name="example_gmail_com">example@gmail.com</string>
+    <string name="profile">Profile</string>
+    <string name="setting">setting</string>
+    <string name="open_drawer">Open Navigation Drawer</string>
+    <string name="close_drawer">Close Navigation Drawer</string>
+    <string name="ashish">Ashish</string>
+    <string name="name">Name</string>
+    <string name="age">Age</string>
+    <string name="password">Password</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="state">State</string>
+    <string name="city">City</string>
+    <string name="email">Email</string>
+    <string-array name="numbers">
+        <item>A+</item>
+        <item>A-</item>
+        <item>B+</item>
+        <item>B-</item>
+        <item>AB+</item>
+        <item>AB-</item>
+        <item>O+</item>
+        <item>O-</item>
+    </string-array>
 </resources>

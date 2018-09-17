@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="94dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/amita"
+        android:text="Be A Life Saver!!!"
+        android:textColor="#D02720"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:id="@+id/linearlayoutupper"
+        android:layout_width="match_parent"
+        android:layout_height="265dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <EditText
+            android:id="@+id/editText9"
+            android:layout_width="310dp"
+            android:layout_height="42dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="107dp"
+            android:background="@drawable/logintext"
+            android:ems="10"
+            android:hint="Name"
+            android:inputType="textPersonName"
+            android:paddingStart="10dp" />
+
+        <EditText
+            android:id="@+id/editText2"
+            android:layout_width="310dp"
+            android:layout_height="42dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="160dp"
+            android:background="@drawable/logintext"
+            android:ems="10"
+            android:hint="@string/email"
+            android:inputType="textPersonName"
+            android:padding="10dp" />
+
+        <EditText
+            android:id="@+id/editText4"
+            android:layout_width="310dp"
+            android:layout_height="42dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="214dp"
+            android:background="@drawable/logintext"
+            android:ems="10"
+            android:hint="@string/mobile_number"
+            android:inputType="phone"
+            android:paddingStart="10dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_alignParentStart="true"
+        android:id="@+id/layout2"
+        android:layout_below="@+id/linearlayoutupper">
+
+        <EditText
+            android:id="@+id/editText5"
+            android:layout_width="310dp"
+            android:layout_height="42dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/logintext"
+            android:ems="10"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:paddingStart="10dp" />
+
+        <EditText
+            android:id="@+id/editText7"
+            android:layout_width="145dp"
+            android:layout_height="42dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/editText5"
+            android:layout_marginTop="57dp"
+            android:background="@drawable/logintext"
+            android:ems="10"
+            android:hint="@string/state"
+            android:inputType="textPersonName"
+            android:paddingStart="10dp" />
+
+        <EditText
+            android:id="@+id/editText8"
+            android:layout_width="143dp"
+            android:layout_height="42dp"
+            android:layout_alignEnd="@+id/spinner1"
+            android:layout_alignTop="@+id/editText7"
+            android:background="@drawable/logintext"
+            android:ems="10"
+            android:hint="@string/city"
+            android:inputType="textPersonName"
+            android:paddingStart="10dp" />
+
+        <EditText
+            android:id="@+id/editText6"
+            android:layout_width="145dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/editText5"
+            android:layout_marginBottom="23dp"
+            android:background="@drawable/logintext"
+            android:ems="10"
+            android:hint="@string/age"
+            android:inputType="number"
+            android:paddingStart="10dp" />
+
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="130dp"
+            android:layout_height="42dp"
+            android:layout_alignEnd="@+id/editText5"
+            android:layout_alignTop="@+id/editText6"
+            android:autofillHints="Group"
+            tools:targetApi="o" />
+
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout2"
+        android:layout_centerHorizontal="true"
+        android:background="#F44336"
+        android:text="Register"
+        android:textColor="#ffffff" />
+
+
+
+
+</RelativeLayout>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:padding="16dp"
+    android:gravity="bottom"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    android:background="#D32F2F">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:src="@drawable/drawerimageicon"
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/user_profile" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ashish"
+        android:textColor="#ffffff"
+        android:paddingTop="5dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/example_gmail_com"
+        android:textColor="#ffffff"
+        android:paddingTop="4dp"/>
+
+</LinearLayout>
