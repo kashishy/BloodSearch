@@ -43,9 +43,11 @@ public class registeractivity extends AppCompatActivity implements AdapterView.O
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
         spinner.setOnItemSelectedListener(this);
+
         firebaseAuth = FirebaseAuth.getInstance();
-        name = findViewById(R.id.name_edittext_id);
         databaseReference= FirebaseDatabase.getInstance().getReference("users_data");
+
+        name = findViewById(R.id.name_edittext_id);
         email = findViewById(R.id.email_id);
         mobile_number=findViewById(R.id.mobilenumber_edittext_id);
         password = findViewById(R.id.password_edittext_id);
@@ -56,6 +58,7 @@ public class registeractivity extends AppCompatActivity implements AdapterView.O
         email_text = email.getText().toString();
         password_text = password.getText().toString();
         register_button = findViewById(R.id.register_button_id);
+
         register_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
