@@ -10,17 +10,20 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="56dp"
         android:layout_height="56dp"
+        android:id="@+id/user_display_dp_id"
         android:src="@drawable/drawerimageicon"
         android:scaleType="centerCrop"
         android:contentDescription="@string/user_profile" />
     <TextView
+        android:id="@+id/user_display_name_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/ashish"
+        android:text="@string/name"
         android:textColor="#ffffff"
         android:paddingTop="5dp"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"/>
     <TextView
+        android:id="@+id/user_display_email_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/example_gmail_com"

@@ -23,6 +23,8 @@
     <string name="state">State</string>
     <string name="city">City</string>
     <string name="email">Email</string>
+    <string name="be_a_life_saver">Be A Life Saver!!!</string>
+    <string name="register">Register</string>
     <string-array name="numbers">
         <item>A+</item>
         <item>A-</item>

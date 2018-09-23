@@ -23,7 +23,11 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity android:name=".homeactivity" />
-        <activity android:name=".registeractivity"></activity>
+        <activity android:name=".registeractivity" />
+        <activity android:name=".add_donor_activity" />
+        <activity android:name=".show_donor" />
+        <activity android:name=".add_blood_request" />
+        <activity android:name=".active_request_activity"></activity>
     </application>
 
 </manifest>

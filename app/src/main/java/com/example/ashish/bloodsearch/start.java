@@ -18,6 +18,7 @@ public class start extends AppCompatActivity {
         timer.schedule(new TimerTask() {
             public void run() {
                 //here you can start your Activity B.
+                it.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(it);
             }
         }, 2000);

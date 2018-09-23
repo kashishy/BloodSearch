@@ -32,23 +32,20 @@
         android:layout_marginTop="240dp"
         android:layout_below="@+id/upper"
         tools:ignore="InvalidId">
-
         <EditText
-            android:id="@+id/mobilenumberid"
-            android:layout_width="300dp"
+            android:id="@+id/login_email_id"
+            android:layout_width="310dp"
             android:layout_height="45dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="2dp"
+            android:layout_alignStart="@+id/login_password_id"
             android:background="@drawable/logintext"
             android:ems="10"
-            android:hint="Mobile Number"
-            android:inputType="numberDecimal"
-            android:paddingLeft="10dp" />
+            android:hint="Email"
+            android:paddingStart="10dp"
+            android:inputType="textEmailAddress" />
 
         <EditText
-            android:id="@+id/passwordid"
-            android:layout_width="300dp"
+            android:id="@+id/login_password_id"
+            android:layout_width="310dp"
             android:layout_height="45dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
@@ -58,6 +55,15 @@
             android:hint="Password"
             android:inputType="textPassword"
             android:paddingLeft="10dp" />
+        <ProgressBar
+            android:id="@+id/progress_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"/>
+
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -67,7 +73,7 @@
         android:layout_below="@+id/middle">
 
         <Button
-            android:id="@+id/loginid"
+            android:id="@+id/login_button_id"
             android:layout_width="120dp"
             android:layout_height="45dp"
             android:layout_alignParentTop="true"
@@ -79,7 +85,7 @@
             android:textColor="#ffffff" />
 
         <Button
-            android:id="@+id/registerid"
+            android:id="@+id/register_button_id"
             android:layout_width="120dp"
             android:layout_height="45dp"
             android:layout_below="@+id/textView"
@@ -93,7 +99,7 @@
             android:id="@+id/textView"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_below="@+id/loginid"
+            android:layout_below="@+id/login_button_id"
             android:layout_centerHorizontal="true"
             android:fontFamily="@font/amita"
             android:text="OR"

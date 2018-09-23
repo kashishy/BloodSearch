@@ -11,58 +11,46 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="94dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="65dp"
         android:fontFamily="@font/amita"
-        android:text="@string/be_a_life_saver"
+        android:text="Be A Life Saver!!!"
         android:textColor="#D02720"
-        android:textSize="20sp"
+        android:textSize="20dp"
         android:textStyle="bold" />
 
     <RelativeLayout
         android:id="@+id/linearlayoutupper"
         android:layout_width="match_parent"
-        android:layout_height="265dp"
+        android:layout_height="268dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true">
 
         <EditText
-            android:id="@+id/name_edittext_id"
-            android:layout_width="310dp"
-            android:layout_height="42dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="107dp"
-            android:background="@drawable/logintext"
-            android:ems="10"
-            android:hint="@string/name"
-            android:inputType="textPersonName"
-            android:paddingStart="10dp" />
-
-        <EditText
-            android:id="@+id/mobilenumber_edittext_id"
-            android:layout_width="310dp"
-            android:layout_height="42dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="214dp"
-            android:background="@drawable/logintext"
-            android:ems="10"
-            android:hint="@string/mobile_number"
-            android:inputType="phone"
-            android:paddingStart="10dp" />
-
-        <EditText
-            android:id="@+id/email_id"
+            android:id="@+id/editText9"
             android:layout_width="310dp"
             android:layout_height="42dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="61dp"
+            android:layout_marginBottom="69dp"
             android:background="@drawable/logintext"
             android:ems="10"
-            android:hint="Email"
-            android:paddingStart="10dp"
-            android:inputType="textEmailAddress" />
+            android:hint="Name"
+            android:inputType="textPersonName"
+            android:paddingStart="10dp" />
+
+        <EditText
+            android:id="@+id/editText2"
+            android:layout_width="310dp"
+            android:layout_height="42dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/logintext"
+            android:ems="10"
+            android:hint="@string/email"
+            android:inputType="textPersonName"
+            android:padding="10dp" />
+
 
     </RelativeLayout>
 
@@ -72,26 +60,24 @@
         android:layout_height="180dp"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/linearlayoutupper">
-
         <EditText
-            android:id="@+id/password_edittext_id"
+            android:id="@+id/editText4"
             android:layout_width="310dp"
             android:layout_height="42dp"
-            android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:background="@drawable/logintext"
             android:ems="10"
-            android:hint="@string/password"
-            android:inputType="textPassword"
+            android:hint="@string/mobile_number"
+            android:inputType="phone"
             android:paddingStart="10dp" />
 
         <EditText
-            android:id="@+id/state_edittext_id"
+            android:id="@+id/editText7"
             android:layout_width="145dp"
             android:layout_height="42dp"
-            android:layout_alignEnd="@+id/password_edittext_id"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="55dp"
+            android:layout_alignStart="@+id/editText4"
+            android:layout_marginTop="53dp"
             android:background="@drawable/logintext"
             android:ems="10"
             android:hint="@string/state"
@@ -99,11 +85,11 @@
             android:paddingStart="10dp" />
 
         <EditText
-            android:id="@+id/city_edittext_id"
+            android:id="@+id/editText8"
             android:layout_width="143dp"
             android:layout_height="42dp"
-            android:layout_alignEnd="@+id/age_edittext_id"
-            android:layout_alignTop="@+id/state_edittext_id"
+            android:layout_alignEnd="@+id/editText4"
+            android:layout_alignTop="@+id/editText7"
             android:background="@drawable/logintext"
             android:ems="10"
             android:hint="@string/city"
@@ -111,12 +97,12 @@
             android:paddingStart="10dp" />
 
         <EditText
-            android:id="@+id/age_edittext_id"
+            android:id="@+id/editText6"
             android:layout_width="145dp"
             android:layout_height="40dp"
             android:layout_alignParentBottom="true"
-            android:layout_alignStart="@+id/password_edittext_id"
-            android:layout_marginBottom="27dp"
+            android:layout_alignStart="@+id/editText7"
+            android:layout_marginBottom="32dp"
             android:background="@drawable/logintext"
             android:ems="10"
             android:hint="@string/age"
@@ -124,35 +110,25 @@
             android:paddingStart="10dp" />
 
         <Spinner
-            android:id="@+id/spinner_id"
+            android:id="@+id/spinner1"
             android:layout_width="145dp"
             android:layout_height="42dp"
-            android:layout_alignEnd="@+id/password_edittext_id"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="18dp"
-            android:autofillHints="Group"
+            android:layout_alignEnd="@+id/editText8"
+            android:layout_alignTop="@+id/editText6"
             android:background="@drawable/logintext"
+            android:autofillHints="Group"
             tools:targetApi="o" />
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:visibility="gone"/>
 
     </RelativeLayout>
-
     <Button
-        android:id="@+id/register_button_id"
+        android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/layout2"
         android:layout_centerHorizontal="true"
         android:background="#F44336"
-        android:text="@string/register"
+        android:text="Add"
         android:textColor="#ffffff" />
-
 
 
 
