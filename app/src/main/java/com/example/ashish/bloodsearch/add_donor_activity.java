@@ -1,5 +1,6 @@
 package com.example.ashish.bloodsearch;
 
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,7 +10,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.Toast;
+import android.widget.Toolbar;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -50,8 +55,8 @@ public class add_donor_activity extends AppCompatActivity implements AdapterView
             @Override
             public void onClick(View view) {
 
-                //progressBar.setVisibility(View.VISIBLE);
-                String donor_id,donor_name,donor_email,donor_mobile,donor_state,donor_city,donor_age,donor_blood;
+                progressBar.setVisibility(View.VISIBLE);
+                String donor_id,donor_name,donor_email,donor_mobile,donor_city,donor_state,donor_age,donor_blood;
                 donor_id=firebaseAuth.getCurrentUser().getUid();
                 donor_name=name.getText().toString().trim();
                 donor_email=email.getText().toString().trim();
@@ -63,8 +68,21 @@ public class add_donor_activity extends AppCompatActivity implements AdapterView
 
                 firebaseUser=firebaseAuth.getCurrentUser();
 
-                user_donors userDonors=new user_donors(donor_id,donor_name,donor_email,donor_mobile,donor_state,donor_city,donor_age,donor_blood);
-                databaseReference.child(donor_id).setValue(userDonors);
+                user_donors userDonors=new user_donors(donor_id,donor_name,donor_email,donor_mobile,donor_city,donor_state,donor_age,donor_blood);
+                databaseReference.child(donor_id).setValue(userDonors).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        progressBar.setVisibility(View.INVISIBLE);
+                        if(task.isSuccessful()){
+                            Toast.makeText(add_donor_activity.this,"Added Successfully", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                        else
+                        {
+                            Toast.makeText(add_donor_activity.this,task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
         });
 

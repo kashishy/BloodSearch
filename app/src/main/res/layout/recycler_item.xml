@@ -5,6 +5,7 @@
     android:layout_height="100dp"
     android:layout_marginTop="6dp"
     android:gravity="end"
+    android:elevation="8dp"
     android:id="@+id/recycler_item_id">
     <LinearLayout
         android:layout_width="match_parent"

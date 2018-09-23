@@ -26,7 +26,7 @@
         android:layout_alignParentTop="true">
 
         <EditText
-            android:id="@+id/editText9"
+            android:id="@+id/Rname_id"
             android:layout_width="310dp"
             android:layout_height="42dp"
             android:layout_alignParentBottom="true"
@@ -39,7 +39,7 @@
             android:paddingStart="10dp" />
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/Remail_id"
             android:layout_width="310dp"
             android:layout_height="42dp"
             android:layout_alignParentBottom="true"
@@ -61,7 +61,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/linearlayoutupper">
         <EditText
-            android:id="@+id/editText4"
+            android:id="@+id/Rmobile_id"
             android:layout_width="310dp"
             android:layout_height="42dp"
             android:layout_centerHorizontal="true"
@@ -72,12 +72,12 @@
             android:paddingStart="10dp" />
 
         <EditText
-            android:id="@+id/editText7"
+            android:id="@+id/Rstate_id"
             android:layout_width="145dp"
             android:layout_height="42dp"
             android:layout_alignParentTop="true"
-            android:layout_alignStart="@+id/editText4"
-            android:layout_marginTop="52dp"
+            android:layout_alignStart="@+id/Rmobile_id"
+            android:layout_marginTop="53dp"
             android:background="@drawable/logintext"
             android:ems="10"
             android:hint="@string/state"
@@ -85,32 +85,38 @@
             android:paddingStart="10dp" />
 
         <EditText
-            android:id="@+id/editText8"
+            android:id="@+id/Rcity_id"
             android:layout_width="145dp"
             android:layout_height="42dp"
-
-            android:layout_alignEnd="@+id/editText4"
-            android:layout_alignTop="@+id/editText7"
+            android:layout_alignEnd="@+id/Rmobile_id"
+            android:layout_alignTop="@+id/Rstate_id"
             android:background="@drawable/logintext"
             android:ems="10"
             android:hint="@string/city"
             android:inputType="textPersonName"
             android:paddingStart="10dp" />
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/Rprogressbar_id"
+            android:visibility="gone"/>
 
         <Spinner
             android:id="@+id/spinner1"
             android:layout_width="145dp"
             android:layout_height="42dp"
             android:layout_alignParentBottom="true"
-            android:layout_alignStart="@+id/editText7"
-            android:background="@drawable/logintext"
-            android:layout_marginBottom="22dp"
+            android:layout_alignStart="@+id/Rmobile_id"
+            android:layout_marginBottom="19dp"
             android:autofillHints="Group"
+            android:background="@drawable/logintext"
             tools:targetApi="o" />
 
     </RelativeLayout>
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/request_button_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/layout2"
