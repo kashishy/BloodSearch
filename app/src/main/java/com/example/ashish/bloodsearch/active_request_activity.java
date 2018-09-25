@@ -5,72 +5,62 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class active_request_activity extends AppCompatActivity {
     Toolbar toolbar;
+    recycler_adapter_requests recyclerAdapterRequests;
     RecyclerView recyclerView;
-    String [] name={
-            "user1",
-            "user2",
-            "user3",
-            "user4",
-            "user5",
-            "user6",
-            "user7",
-            "user8",
-            "user9",
-            "user10",
-            "user11"
-    };
-    String [] city={
-            "city1",
-            "city2",
-            "city3",
-            "city4",
-            "city5",
-            "city6",
-            "city7",
-            "city8",
-            "city9",
-            "city10",
-            "city11"
-    };
-    String [] blood={
-            "blood1",
-            "blood",
-            "blood3",
-            "blood4",
-            "blood5",
-            "blood6",
-            "blood7",
-            "blood8",
-            "blood9",
-            "blood10",
-            "blood11"
-    };
+    List<display_data> users;
+    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_active_request_activity);
+
         toolbar=findViewById(R.id.toolbr_show_donors);
         setSupportActionBar(toolbar);
-        recyclerView=findViewById(R.id.recyclerview_show_donors);
-        List<User> sampleuser=new ArrayList<>();
-        for(int i=0;i<name.length;i++)
-        {
-            User user=new User();
-            user.username=name[i];
-            user.usercity=city[i];
-            user.userblood=blood[i];
-            sampleuser.add(user);
-        }
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
+
+        recyclerView=findViewById(R.id.recyclerview_active_requests);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(new recycler_adapter(sampleuser));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        users=new ArrayList<>();
+
+        databaseReference= FirebaseDatabase.getInstance().getReference("blood_requests");
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if(dataSnapshot.exists()){
+
+                    for(DataSnapshot donorsSnapShot : dataSnapshot.getChildren()){
+                        display_data donorData=donorsSnapShot.getValue(display_data.class);
+                        users.add(donorData);
+
+                    }
+                    recyclerAdapterRequests=new recycler_adapter_requests(users,active_request_activity.this);
+                    recyclerView.setAdapter(recyclerAdapterRequests);
+                    Toast.makeText(active_request_activity.this,"Loaded",Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(active_request_activity.this,"Error",Toast.LENGTH_SHORT).show();
+
+            }
+        });
     }
 }

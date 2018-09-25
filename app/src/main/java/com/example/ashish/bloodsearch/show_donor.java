@@ -1,78 +1,70 @@
 package com.example.ashish.bloodsearch;
 
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.ViewGroup;
-
+import android.widget.Toast;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
 public class show_donor extends AppCompatActivity {
+
     Toolbar toolbar;
     RecyclerView recyclerView;
-    String [] name={
-            "user1",
-            "user2",
-            "user3",
-            "user4",
-            "user5",
-            "user6",
-            "user7",
-            "user8",
-            "user9",
-            "user10",
-            "user11"
-    };
-    String [] city={
-            "city1",
-            "city2",
-            "city3",
-            "city4",
-            "city5",
-            "city6",
-            "city7",
-            "city8",
-            "city9",
-            "city10",
-            "city11"
-    };
-    String [] blood={
-            "blood1",
-            "blood",
-            "blood3",
-            "blood4",
-            "blood5",
-            "blood6",
-            "blood7",
-            "blood8",
-            "blood9",
-            "blood10",
-            "blood11"
-    };
+    recycler_adapter recyclerAdapter;
+    List<User> users;
+    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_donor);
+
         toolbar=findViewById(R.id.toolbr_show_donors);
         setSupportActionBar(toolbar);
+
         recyclerView=findViewById(R.id.recyclerview_show_donors);
-        List<User> sampleuser=new ArrayList<>();
-        for(int i=0;i<name.length;i++)
-        {
-            User user=new User();
-            user.username=name[i];
-            user.usercity=city[i];
-            user.userblood=blood[i];
-            sampleuser.add(user);
-        }
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(new recycler_adapter(sampleuser));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        users=new ArrayList<>();
+
+        /*users.add(new User(
+
+        ));*/
+
+        databaseReference= FirebaseDatabase.getInstance().getReference("registered_donors");
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if(dataSnapshot.exists()){
+
+                    for(DataSnapshot donorsSnapShot : dataSnapshot.getChildren()){
+                        User donorData=donorsSnapShot.getValue(User.class);
+                        users.add(donorData);
+
+                    }
+                    recyclerAdapter=new recycler_adapter(users,show_donor.this);
+                    recyclerView.setAdapter(recyclerAdapter);
+                    Toast.makeText(show_donor.this,"Loaded",Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                 Toast.makeText(show_donor.this,"Error",Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        
     }
 }

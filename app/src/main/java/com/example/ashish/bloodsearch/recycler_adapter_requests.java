@@ -9,11 +9,11 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-public class recycler_adapter extends RecyclerView.Adapter<viewHolder> {
-    private List<User> users;
+public class recycler_adapter_requests extends RecyclerView.Adapter<viewHolder> {
+    private List<display_data> users;
     Context mCtx;
 
-    public recycler_adapter(List<User> users, Context mCtx) {
+    public recycler_adapter_requests(List<display_data> users, Context mCtx) {
         this.users = users;
         this.mCtx = mCtx;
     }
@@ -21,7 +21,6 @@ public class recycler_adapter extends RecyclerView.Adapter<viewHolder> {
     @NonNull
     @Override
     public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         View view= LayoutInflater.from(mCtx).inflate(R.layout.recycler_item,parent,false);
         viewHolder userviewHolder=new viewHolder(view);
         return userviewHolder;
@@ -29,11 +28,10 @@ public class recycler_adapter extends RecyclerView.Adapter<viewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
-
-        User sampleuser=users.get(position);
-        holder.item_name.setText(sampleuser.name);
-        holder.item_city.setText(sampleuser.city);
-        holder.item_blood.setText(sampleuser.blood_group);
+        display_data sampleuser=users.get(position);
+        holder.item_name.setText(sampleuser.getName());
+        holder.item_city.setText(sampleuser.getCity());
+        holder.item_blood.setText(sampleuser.getBlood_group());
 
     }
 

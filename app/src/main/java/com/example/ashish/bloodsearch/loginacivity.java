@@ -30,12 +30,14 @@ public class loginacivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loginacivity);
+
         login_email=findViewById(R.id.login_email_id);
         login_password=findViewById(R.id.login_password_id);
         loginbutton=findViewById(R.id.login_button_id);
         registerbutton=findViewById(R.id.register_button_id);
         progressBar=findViewById(R.id.progress_id);
         firebaseAuth = FirebaseAuth.getInstance();
+
         loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,8 +61,6 @@ public class loginacivity extends AppCompatActivity {
                             }
                         }
                     });
-                    Intent intent = new Intent(loginacivity.this, homeactivity.class);
-                    startActivity(intent);
                 }
             }
         });
@@ -100,5 +100,16 @@ public class loginacivity extends AppCompatActivity {
          {
              return true;
          }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(firebaseAuth.getCurrentUser()!=null){
+            finish();
+            Intent intent=new Intent(loginacivity.this,homeactivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        }
     }
 }

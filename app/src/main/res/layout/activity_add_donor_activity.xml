@@ -80,7 +80,7 @@
             android:layout_marginTop="53dp"
             android:background="@drawable/logintext"
             android:ems="10"
-            android:hint="@string/state"
+            android:hint="@string/city"
             android:inputType="textPersonName"
             android:paddingStart="10dp" />
 
@@ -92,7 +92,7 @@
             android:layout_alignTop="@+id/city_id"
             android:background="@drawable/logintext"
             android:ems="10"
-            android:hint="@string/city"
+            android:hint="@string/state"
             android:inputType="textPersonName"
             android:paddingStart="10dp" />
 
@@ -136,7 +136,5 @@
         android:background="#F44336"
         android:text="Add"
         android:textColor="#ffffff" />
-
-
 
 </RelativeLayout>
