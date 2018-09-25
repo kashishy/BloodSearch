@@ -80,6 +80,10 @@ public class registeractivity extends AppCompatActivity implements AdapterView.O
                                     user_state=state.getText().toString().trim();
                                     user_age=age.getText().toString().trim();
                                     user_blood=spinner.getSelectedItem().toString().trim();
+                                    user_name=changeCase(user_name);
+                                    user_email=changeCase(user_email);
+                                    user_city=changeCase(user_city);
+                                    user_state=changeCase(user_state);
                                     user_name=toTitleCase(user_name);
                                     user_city=toTitleCase(user_city);
                                     user_state=toTitleCase(user_state);
@@ -121,6 +125,12 @@ public class registeractivity extends AppCompatActivity implements AdapterView.O
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
+    public String changeCase(String a){
+        String result=a.toLowerCase();
+        return result;
+    }
+
     public static String toTitleCase(String givenString) {
         String[] arr = givenString.split(" ");
         StringBuffer sb = new StringBuffer();

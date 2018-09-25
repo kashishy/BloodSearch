@@ -59,10 +59,17 @@ public class add_blood_request extends AppCompatActivity implements AdapterView.
                 String request_id,request_name,request_email,request_mobile,request_city,request_state,request_blood;
                 request_id=firebaseAuth.getCurrentUser().getUid();
                 request_name=name.getText().toString().trim();
+                request_name=changeCase(request_name);
+                request_name=toTitleCase(request_name);
                 request_email=email.getText().toString().trim();
+                request_email=changeCase(request_email);
                 request_mobile=mobile.getText().toString().trim();
                 request_state=state.getText().toString().trim();
+                request_state=changeCase(request_state);
+                request_state=toTitleCase(request_state);
                 request_city=city.getText().toString().trim();
+                request_city=changeCase(request_city);
+                request_city=toTitleCase(request_city);
                 request_blood=spinner.getSelectedItem().toString().trim();
 
                 firebaseUser=firebaseAuth.getCurrentUser();
@@ -85,6 +92,21 @@ public class add_blood_request extends AppCompatActivity implements AdapterView.
             }
         });
 
+    }
+
+    public String changeCase(String a){
+        String result=a.toLowerCase();
+        return result;
+    }
+    public static String toTitleCase(String givenString) {
+        String[] arr = givenString.split(" ");
+        StringBuffer sb = new StringBuffer();
+
+        for (int i = 0; i < arr.length; i++) {
+            sb.append(Character.toUpperCase(arr[i].charAt(0)))
+                    .append(arr[i].substring(1)).append(" ");
+        }
+        return sb.toString().trim();
     }
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

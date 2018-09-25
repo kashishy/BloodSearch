@@ -54,7 +54,7 @@ public class show_donor extends AppCompatActivity {
                     }
                     recyclerAdapter=new recycler_adapter(users,show_donor.this);
                     recyclerView.setAdapter(recyclerAdapter);
-                    Toast.makeText(show_donor.this,"Loaded",Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(show_donor.this,"Loaded",Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -65,6 +65,6 @@ public class show_donor extends AppCompatActivity {
 
             }
         });
-        
+
     }
 }

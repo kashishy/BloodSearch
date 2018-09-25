@@ -51,7 +51,7 @@ public class active_request_activity extends AppCompatActivity {
                     }
                     recyclerAdapterRequests=new recycler_adapter_requests(users,active_request_activity.this);
                     recyclerView.setAdapter(recyclerAdapterRequests);
-                    Toast.makeText(active_request_activity.this,"Loaded",Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(active_request_activity.this,"Loaded",Toast.LENGTH_SHORT).show();
                 }
 
             }
