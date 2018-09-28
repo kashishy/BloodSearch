@@ -74,4 +74,5 @@
         <item>West Bengal</item>
         <item></item>
     </string-array>
+    <string name="title_activity_maps">Map</string>
 </resources>

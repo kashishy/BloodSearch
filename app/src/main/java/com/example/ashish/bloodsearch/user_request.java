@@ -2,7 +2,7 @@ package com.example.ashish.bloodsearch;
 
 public class user_request {
 
-        String name,email,moblie,city,state,age,blood_group,id;
+        String name,email,mobile,city,state,age,blood_group,id;
         public user_request(String donor_name, String donor_email, String donor_mobile, String donor_state, String donor_city, String donor_blood){
 
         }
@@ -11,7 +11,7 @@ public class user_request {
             this.id=id;
             this.name = name;
             this.email = email;
-            this.moblie = moblie;
+            this.mobile = moblie;
             this.city = city;
             this.state = state;
             this.blood_group = blood_group;
@@ -33,7 +33,7 @@ public class user_request {
 
         public String getMoblie() {
 
-            return moblie;
+            return mobile;
         }
 
         public String getCity() {

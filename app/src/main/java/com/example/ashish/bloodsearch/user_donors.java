@@ -2,16 +2,16 @@ package com.example.ashish.bloodsearch;
 
 public class user_donors {
 
-        String name,email,moblie,city,state,age,blood_group,id;
-        public user_donors(String donor_name, String donor_email, String donor_mobile, String donor_state, String donor_city, String donor_age, String donor_blood){
+        String name,email,mobile,city,state,age,blood_group,id;
+        public user_donors(){
 
         }
 
-        public user_donors(String id,String name, String email, String moblie, String city, String state, String age, String blood_group) {
+        public user_donors(String id,String name, String email, String mobile, String city, String state, String age, String blood_group) {
             this.id=id;
             this.name = name;
             this.email = email;
-            this.moblie = moblie;
+            this.mobile = mobile;
             this.city = city;
             this.state = state;
             this.age = age;
@@ -34,7 +34,7 @@ public class user_donors {
 
         public String getMoblie() {
 
-            return moblie;
+            return mobile;
         }
 
         public String getCity() {

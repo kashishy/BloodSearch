@@ -3,6 +3,8 @@ package com.example.ashish.bloodsearch;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -24,7 +26,7 @@ public class add_donor_activity extends AppCompatActivity implements AdapterView
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
     private DatabaseReference databaseReference;
-    private  EditText name,email,mobile,city,state,age;
+    EditText name,email,mobile,city,state,age;
     private Button add_button;
     private ProgressBar progressBar;
     private Spinner spinner;
@@ -56,38 +58,44 @@ public class add_donor_activity extends AppCompatActivity implements AdapterView
             public void onClick(View view) {
 
                 progressBar.setVisibility(View.VISIBLE);
-                String donor_id, donor_name, donor_email, donor_mobile, donor_city, donor_state, donor_age, donor_blood;
-                donor_id = firebaseAuth.getCurrentUser().getUid();
-                donor_name = name.getText().toString().trim();
-                donor_name=changeCase(donor_name);
-                donor_name = toTitleCase(donor_name);
-                donor_email = email.getText().toString().trim();
-                donor_email=changeCase(donor_email);
-                donor_mobile = mobile.getText().toString().trim();
-                donor_state = state.getText().toString().trim();
-                donor_state=changeCase(donor_state);
-                donor_state = toTitleCase(donor_state);
-                donor_city = city.getText().toString().trim();
-                donor_city=changeCase(donor_city);
-                donor_city = toTitleCase(donor_city);
-                donor_age = age.getText().toString().trim();
-                donor_blood = spinner.getSelectedItem().toString().trim();
+                if (checkDataEntered()) {
+                    String donor_id, donor_name, donor_email, donor_mobile, donor_city, donor_state, donor_age, donor_blood;
+                    donor_id = firebaseAuth.getCurrentUser().getUid();
+                    donor_name = name.getText().toString().trim();
+                    donor_name = changeCase(donor_name);
+                    donor_name = toTitleCase(donor_name);
+                    donor_email = email.getText().toString().trim();
+                    donor_email = changeCase(donor_email);
+                    donor_mobile = mobile.getText().toString().trim();
+                    donor_state = state.getText().toString().trim();
+                    donor_state = changeCase(donor_state);
+                    donor_state = toTitleCase(donor_state);
+                    donor_city = city.getText().toString().trim();
+                    donor_city = changeCase(donor_city);
+                    donor_city = toTitleCase(donor_city);
+                    donor_age = age.getText().toString().trim();
+                    donor_blood = spinner.getSelectedItem().toString().trim();
 
-                firebaseUser = firebaseAuth.getCurrentUser();
+                    firebaseUser = firebaseAuth.getCurrentUser();
 
-                user_donors userDonors = new user_donors(donor_id, donor_name, donor_email, donor_mobile, donor_city, donor_state, donor_age, donor_blood);
-                databaseReference.child(donor_id).setValue(userDonors).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        progressBar.setVisibility(View.INVISIBLE);
-                        if (task.isSuccessful()) {
-                            Toast.makeText(add_donor_activity.this, "Added Successfully", Toast.LENGTH_SHORT).show();
-                            finish();
-                        } else {
-                            Toast.makeText(add_donor_activity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    user_donors userDonors = new user_donors(donor_id, donor_name, donor_email, donor_mobile, donor_city, donor_state, donor_age, donor_blood);
+                    databaseReference.child(donor_id).setValue(userDonors).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            progressBar.setVisibility(View.INVISIBLE);
+                            if (task.isSuccessful()) {
+                                Toast.makeText(add_donor_activity.this, "Added Successfully", Toast.LENGTH_SHORT).show();
+                                finish();
+                            } else {
+                                Toast.makeText(add_donor_activity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                });
+                    });
+                }
+                else
+                {
+                    progressBar.setVisibility(View.INVISIBLE);
+                }
             }
         });
 
@@ -116,5 +124,58 @@ public class add_donor_activity extends AppCompatActivity implements AdapterView
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    boolean isEmail(EditText text){
+        CharSequence email=text.getText().toString().trim();
+        return (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
+    }
+    boolean isEmpty(EditText text){
+        CharSequence string =text.getText().toString().trim();
+        return (TextUtils.isEmpty(string));
+    }
+    boolean checkDataEntered()
+    {
+        if(isEmpty(name))
+        {
+            name.setError("Enter Name");
+            name.requestFocus();
+            return false;
+        }
+        if(!isEmail(email))
+        {
+            email.setError("Incorrect Email");
+            email.requestFocus();
+            return false;
+        }
+        else if(isEmpty(mobile)){
+            mobile.setError("Enter Mobile Number");
+            mobile.requestFocus();
+            return false;
+        }
+        else if(mobile.length()!=10){
+            mobile.setError("Must 10 Digits");
+            mobile.requestFocus();
+            return false;
+        }
+        else if(isEmpty(state)){
+            state.setError("Enter State");
+            state.requestFocus();
+            return false;
+        }
+        else if(isEmpty(city)){
+            city.setError("Enter City");
+            city.requestFocus();
+            return false;
+        }
+        else if(isEmpty(age)){
+            age.setError("Enter Age");
+            age.requestFocus();
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 }

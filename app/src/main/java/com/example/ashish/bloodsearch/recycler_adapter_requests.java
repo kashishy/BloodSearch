@@ -1,6 +1,8 @@
 package com.example.ashish.bloodsearch;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +14,7 @@ import java.util.List;
 public class recycler_adapter_requests extends RecyclerView.Adapter<viewHolder> {
     private List<display_data> users;
     Context mCtx;
+
 
     public recycler_adapter_requests(List<display_data> users, Context mCtx) {
         this.users = users;
@@ -32,6 +35,17 @@ public class recycler_adapter_requests extends RecyclerView.Adapter<viewHolder> 
         holder.item_name.setText(sampleuser.getName());
         holder.item_city.setText(sampleuser.getCity());
         holder.item_blood.setText(sampleuser.getBlood_group());
+        final String mobile_number=sampleuser.getMobile();
+        holder.call_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Toast.makeText(mCtx,"Image Clicked",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent("android.intent.action.CALL");
+                Uri data = Uri.parse("tel:"+ mobile_number );
+                intent.setData(data);
+                mCtx.startActivity(intent);
+            }
+        });
 
     }
 

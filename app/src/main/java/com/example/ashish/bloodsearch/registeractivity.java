@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -62,57 +64,62 @@ public class registeractivity extends AppCompatActivity implements AdapterView.O
         register_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               progressBar.setVisibility(View.VISIBLE);
-                firebaseAuth.createUserWithEmailAndPassword(email.getText().toString().trim(),password.getText().toString().trim())
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                 progressBar.setVisibility(View.GONE);
-                                if(task.isSuccessful()){
+                progressBar.setVisibility(View.VISIBLE);
+                if (checkDataEntered()) {
+                    firebaseAuth.createUserWithEmailAndPassword(email.getText().toString().trim(), password.getText().toString().trim())
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    progressBar.setVisibility(View.GONE);
+                                    if (task.isSuccessful()) {
 
-                                    String user_id,user_name,user_email,user_password,user_mobile,user_city,user_state,user_age,user_blood;
-                                    user_id=firebaseAuth.getCurrentUser().getUid();
-                                    user_name=name.getText().toString().trim();
-                                    user_email=email.getText().toString().trim();
-                                    user_mobile=mobile_number.getText().toString().trim();
-                                    user_password=password.getText().toString().trim();
-                                    user_city=city.getText().toString().trim();
-                                    user_state=state.getText().toString().trim();
-                                    user_age=age.getText().toString().trim();
-                                    user_blood=spinner.getSelectedItem().toString().trim();
-                                    user_name=changeCase(user_name);
-                                    user_email=changeCase(user_email);
-                                    user_city=changeCase(user_city);
-                                    user_state=changeCase(user_state);
-                                    user_name=toTitleCase(user_name);
-                                    user_city=toTitleCase(user_city);
-                                    user_state=toTitleCase(user_state);
+                                        String user_id, user_name, user_email, user_password, user_mobile, user_city, user_state, user_age, user_blood;
+                                        user_id = firebaseAuth.getCurrentUser().getUid();
+                                        user_name = name.getText().toString().trim();
+                                        user_email = email.getText().toString().trim();
+                                        user_mobile = mobile_number.getText().toString().trim();
+                                        user_password = password.getText().toString().trim();
+                                        user_city = city.getText().toString().trim();
+                                        user_state = state.getText().toString().trim();
+                                        user_age = age.getText().toString().trim();
+                                        user_blood = spinner.getSelectedItem().toString().trim();
+                                        user_name = changeCase(user_name);
+                                        user_email = changeCase(user_email);
+                                        user_city = changeCase(user_city);
+                                        user_state = changeCase(user_state);
+                                        user_name = toTitleCase(user_name);
+                                        user_city = toTitleCase(user_city);
+                                        user_state = toTitleCase(user_state);
 
-                                    firebaseUser=firebaseAuth.getCurrentUser();
-                                    user_data userData=new user_data(user_id,user_name,user_email,user_mobile,user_password,user_city,user_state,user_age,user_blood);
-                                    databaseReference.child(user_id).setValue(userData);
-                                    UserProfileChangeRequest userProfileChangeRequest=new UserProfileChangeRequest.Builder()
-                                            .setDisplayName(name.getText().toString().trim())
-                                            .build();
-                                    firebaseUser.updateProfile(userProfileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            if(task.isSuccessful()){
-                                                Toast.makeText(registeractivity.this,"Upload Successfull",Toast.LENGTH_SHORT).show();
+                                        firebaseUser = firebaseAuth.getCurrentUser();
+                                        user_data userData = new user_data(user_id, user_name, user_email, user_mobile, user_password, user_city, user_state, user_age, user_blood);
+                                        databaseReference.child(user_id).setValue(userData);
+                                        UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder()
+                                                .setDisplayName(name.getText().toString().trim())
+                                                .build();
+                                        firebaseUser.updateProfile(userProfileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                   // Toast.makeText(registeractivity.this, "Upload Successfull", Toast.LENGTH_SHORT).show();
+                                                }
                                             }
-                                        }
-                                    });
-                                    finish();
-                                    Toast.makeText(registeractivity.this,"Registration Successfull",Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(registeractivity.this,loginacivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                    startActivity(intent);
+                                        });
+                                        finish();
+                                        Toast.makeText(registeractivity.this, "Registration Successfull", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(registeractivity.this, loginacivity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                        startActivity(intent);
+                                    } else {
+                                        Toast.makeText(registeractivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
                                 }
-                                else{
-                                    Toast.makeText(registeractivity.this,task.getException().getMessage(),Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
+                            });
+                }
+                else
+                {
+                    progressBar.setVisibility(View.INVISIBLE);
+                }
             }
         });
     }
@@ -140,5 +147,67 @@ public class registeractivity extends AppCompatActivity implements AdapterView.O
                     .append(arr[i].substring(1)).append(" ");
         }
         return sb.toString().trim();
+    }
+
+    boolean isEmail(EditText text){
+        CharSequence email=text.getText().toString().trim();
+        return (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
+    }
+    boolean isEmpty(EditText text){
+        CharSequence string =text.getText().toString().trim();
+        return (TextUtils.isEmpty(string));
+    }
+    boolean checkDataEntered()
+    {
+        if(isEmpty(name))
+        {
+            name.setError("Enter Name");
+            name.requestFocus();
+            return false;
+        }
+        if(!isEmail(email))
+        {
+            email.setError("Incorrect Email");
+            email.requestFocus();
+            return false;
+        }
+        else if(isEmpty(mobile_number)){
+            mobile_number.setError("Enter Mobile Number");
+            mobile_number.requestFocus();
+            return false;
+        }
+        else if(mobile_number.length()!=10){
+            mobile_number.setError("Must 10 Digits");
+            mobile_number.requestFocus();
+            return false;
+        }
+        else if(isEmpty(password))
+        {
+            password.setError("Enter Password");
+            return false;
+        }
+        else if(password.length()<6){
+            password.setError("Minimum length of password is 6");
+            return  false;
+        }
+        else if(isEmpty(state)){
+            state.setError("Enter State");
+            state.requestFocus();
+            return false;
+        }
+        else if(isEmpty(city)){
+            city.setError("Enter City");
+            city.requestFocus();
+            return false;
+        }
+        else if(isEmpty(age)){
+            age.setError("Enter Age");
+            age.requestFocus();
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 }

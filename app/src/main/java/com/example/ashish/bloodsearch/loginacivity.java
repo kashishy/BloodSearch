@@ -61,6 +61,8 @@ public class loginacivity extends AppCompatActivity {
                             }
                         }
                     });
+                }else{
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
             }
         });
@@ -82,7 +84,7 @@ public class loginacivity extends AppCompatActivity {
     }
     boolean checkDataEntered()
     {
-         /*if(!isEmail(login_email))
+         if(!isEmail(login_email))
          {
              login_email.setError("Incorrect Email");
              return false;
@@ -96,7 +98,7 @@ public class loginacivity extends AppCompatActivity {
              login_password.setError("Minimum length of password is 6");
              return  false;
          }
-         else*/
+         else
          {
              return true;
          }

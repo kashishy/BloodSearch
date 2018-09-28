@@ -1,5 +1,7 @@
 package com.example.ashish.bloodsearch;
 
+import android.widget.ImageView;
+
 public class display_data {
     private String id,name,email,mobile,state,city,blood_group;
 

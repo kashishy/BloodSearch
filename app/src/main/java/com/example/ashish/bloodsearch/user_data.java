@@ -1,16 +1,16 @@
 package com.example.ashish.bloodsearch;
 
 public class user_data {
-    String name,email,moblie,password,city,state,age,blood_group,id;
+    String name,email,mobile,password,city,state,age,blood_group,id;
     public user_data(){
 
     }
 
-    public user_data(String id,String name, String email, String moblie, String password, String city, String state, String age, String blood_group) {
+    public user_data(String id,String name, String email, String mobile, String password, String city, String state, String age, String blood_group) {
         this.id=id;
         this.name = name;
         this.email = email;
-        this.moblie = moblie;
+        this.mobile = mobile;
         this.password = password;
         this.city = city;
         this.state = state;
@@ -29,8 +29,8 @@ public class user_data {
         return email;
     }
 
-    public String getMoblie() {
-        return moblie;
+    public String getMobile() {
+        return mobile;
     }
 
     public String getPassword() {

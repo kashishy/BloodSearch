@@ -3,6 +3,8 @@ package com.example.ashish.bloodsearch;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -55,40 +57,45 @@ public class add_blood_request extends AppCompatActivity implements AdapterView.
             public void onClick(View view) {
 
                 progressBar.setVisibility(View.VISIBLE);
+                if (checkDataEntered()) {
 
-                String request_id,request_name,request_email,request_mobile,request_city,request_state,request_blood;
-                request_id=firebaseAuth.getCurrentUser().getUid();
-                request_name=name.getText().toString().trim();
-                request_name=changeCase(request_name);
-                request_name=toTitleCase(request_name);
-                request_email=email.getText().toString().trim();
-                request_email=changeCase(request_email);
-                request_mobile=mobile.getText().toString().trim();
-                request_state=state.getText().toString().trim();
-                request_state=changeCase(request_state);
-                request_state=toTitleCase(request_state);
-                request_city=city.getText().toString().trim();
-                request_city=changeCase(request_city);
-                request_city=toTitleCase(request_city);
-                request_blood=spinner.getSelectedItem().toString().trim();
+                    String request_id, request_name, request_email, request_mobile, request_city, request_state, request_blood;
+                    request_id = firebaseAuth.getCurrentUser().getUid();
+                    request_name = name.getText().toString().trim();
+                    request_name = changeCase(request_name);
+                    request_name = toTitleCase(request_name);
+                    request_email = email.getText().toString().trim();
+                    request_email = changeCase(request_email);
+                    request_mobile = mobile.getText().toString().trim();
+                    request_state = state.getText().toString().trim();
+                    request_state = changeCase(request_state);
+                    request_state = toTitleCase(request_state);
+                    request_city = city.getText().toString().trim();
+                    request_city = changeCase(request_city);
+                    request_city = toTitleCase(request_city);
+                    request_blood = spinner.getSelectedItem().toString().trim();
 
-                firebaseUser=firebaseAuth.getCurrentUser();
+                    firebaseUser = firebaseAuth.getCurrentUser();
 
-                user_request userRequest=new user_request(request_id,request_name,request_email,request_mobile,request_city,request_state,request_blood);
-                databaseReference.child(request_id).setValue(userRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
+                    user_request userRequest = new user_request(request_id, request_name, request_email, request_mobile, request_city, request_state, request_blood);
+                    databaseReference.child(request_id).setValue(userRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
 
-                        progressBar.setVisibility(View.INVISIBLE);
-                        if(task.isSuccessful()){
-                            Toast.makeText(add_blood_request.this, "Request Successfully Added", Toast.LENGTH_SHORT).show();
-                            finish();
+                            progressBar.setVisibility(View.INVISIBLE);
+                            if (task.isSuccessful()) {
+                                Toast.makeText(add_blood_request.this, "Request Successfully Added", Toast.LENGTH_SHORT).show();
+                                finish();
+                            } else {
+                                Toast.makeText(add_blood_request.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            }
                         }
-                        else{
-                            Toast.makeText(add_blood_request.this,task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                    });
+                }
+                else
+                {
+                    progressBar.setVisibility(View.INVISIBLE);
+                }
             }
         });
 
@@ -116,5 +123,53 @@ public class add_blood_request extends AppCompatActivity implements AdapterView.
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    boolean isEmail(EditText text){
+        CharSequence email=text.getText().toString().trim();
+        return (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
+    }
+    boolean isEmpty(EditText text){
+        CharSequence string =text.getText().toString().trim();
+        return (TextUtils.isEmpty(string));
+    }
+    boolean checkDataEntered()
+    {
+        if(isEmpty(name))
+        {
+            name.setError("Enter Name");
+            name.requestFocus();
+            return false;
+        }
+        if(!isEmail(email))
+        {
+            email.setError("Incorrect Email");
+            email.requestFocus();
+            return false;
+        }
+        else if(isEmpty(mobile)){
+            mobile.setError("Enter Mobile Number");
+            mobile.requestFocus();
+            return false;
+        }
+        else if(mobile.length()!=10){
+            mobile.setError("Must 10 Digits");
+            mobile.requestFocus();
+            return false;
+        }
+        else if(isEmpty(state)){
+            state.setError("Enter State");
+            state.requestFocus();
+            return false;
+        }
+        else if(isEmpty(city)){
+            city.setError("Enter City");
+            city.requestFocus();
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 }
