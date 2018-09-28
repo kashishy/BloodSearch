@@ -22,7 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 
 public class homeactivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     Toolbar toolbar;
-    private CardView add_donor_cardview,donor_cardview,add_request_cardview,active_request_cardview;
+    private CardView add_donor_cardview,donor_cardview,add_request_cardview,active_request_cardview,blood_banks,share;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     TextView display_name,display_email;
@@ -33,22 +33,29 @@ public class homeactivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.navigation_drawer);
-        add_donor_cardview=(CardView)findViewById(R.id.add_donor_id);
-        donor_cardview=(CardView)findViewById(R.id.donor_id);
-        add_request_cardview=(CardView)findViewById(R.id.add_request_id);
-        active_request_cardview=(CardView)findViewById(R.id.active_request_id);
-        toolbar = (Toolbar) findViewById(R.id.toolbr);
+
+        add_donor_cardview=findViewById(R.id.add_donor_id);
+        donor_cardview=findViewById(R.id.donor_id);
+        add_request_cardview=findViewById(R.id.add_request_id);
+        active_request_cardview=findViewById(R.id.active_request_id);
+        blood_banks=findViewById(R.id.blood_bank_id);
+        share=findViewById(R.id.share_id);
+
+        toolbar =  findViewById(R.id.toolbr);
         setSupportActionBar(toolbar);
-        drawerLayout=(DrawerLayout)findViewById(R.id.drawerid);
-        navigationView=(NavigationView)findViewById(R.id.navigation_view);
+
+        drawerLayout=findViewById(R.id.drawerid);
+        navigationView=findViewById(R.id.navigation_view);
         ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open_drawer,R.string.close_drawer);
         drawerLayout.setDrawerListener(toggle);
         toggle.syncState();
         View navHeader=navigationView.getHeaderView(0);
         display_name=navHeader.findViewById(R.id.user_display_name_id);
         display_email=navHeader.findViewById(R.id.user_display_email_id);
+
         firebaseAuth=FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
+
         if(firebaseUser!=null)
         {
             String name=firebaseUser.getDisplayName();
@@ -57,6 +64,7 @@ public class homeactivity extends AppCompatActivity implements NavigationView.On
             display_email.setText(email);
         }
         navigationView.setNavigationItemSelectedListener(this);
+
         add_donor_cardview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,6 +90,13 @@ public class homeactivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
                 Intent intent =new Intent(homeactivity.this,active_request_activity.class);
+                startActivity(intent);
+            }
+        });
+        blood_banks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(homeactivity.this,MapsActivity.class);
                 startActivity(intent);
             }
         });
