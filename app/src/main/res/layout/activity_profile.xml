@@ -32,119 +32,135 @@
         android:padding="20dp"
         android:layout_marginTop="19dp">
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            app:errorEnabled="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:paddingLeft="8dp"
+            android:textSize="12dp"/>
+
 
             <EditText
                 android:id="@+id/profile_name_id"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
+                android:layout_height="30dp"
                 android:cursorVisible="false"
-                android:background="#ffffff"
+                android:background="@drawable/profile_border"
                 android:ems="10"
                 android:hint="@string/name"
                 android:inputType="textPersonName"
                 android:paddingStart="10dp"
                 />
-        </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <android.support.v4.widget.Space
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            app:errorEnabled="true">
+            android:layout_height="10dp" />
 
-            <EditText
-                android:id="@+id/profile_email_id"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:background="#ffffff"
-                android:cursorVisible="false"
-                android:ems="10"
-                android:hint="@string/email"
-                android:inputType="textEmailAddress"
-                android:paddingStart="10dp"
-                />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            app:errorEnabled="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mobile Number"
+            android:paddingLeft="8dp"
+            android:textSize="12dp"/>
 
             <EditText
                 android:id="@+id/profile_mobile_id"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:background="#ffffff"
+                android:layout_height="30dp"
+                android:background="@drawable/profile_border"
                 android:cursorVisible="false"
                 android:ems="10"
                 android:hint="@string/mobile_number"
                 android:inputType="number"
                 android:paddingStart="10dp"
                 />
-        </android.support.design.widget.TextInputLayout>
 
-
-        <android.support.design.widget.TextInputLayout
+        <android.support.v4.widget.Space
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            app:errorEnabled="true">
+            android:layout_height="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="City"
+            android:paddingLeft="8dp"
+            android:textSize="12dp"/>
+
 
             <EditText
                 android:id="@+id/profile_city_id"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:background="#ffffff"
+                android:layout_height="30dp"
+                android:background="@drawable/profile_border"
                 android:cursorVisible="false"
                 android:ems="10"
                 android:hint="@string/city"
                 android:inputType="text"
                 android:paddingStart="10dp"
                 />
-        </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <android.support.v4.widget.Space
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            app:errorEnabled="true">
+            android:layout_height="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="State"
+            android:paddingLeft="8dp"
+            android:textSize="12dp"/>
 
             <EditText
                 android:id="@+id/profile_state_id"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:background="#ffffff"
+                android:background="@drawable/profile_border"
                 android:cursorVisible="false"
                 android:ems="10"
                 android:hint="@string/state"
                 android:inputType="text"
                 android:paddingStart="10dp"
                 />
-        </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <android.support.v4.widget.Space
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            app:errorEnabled="true">
+            android:layout_height="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Age"
+            android:paddingLeft="8dp"
+            android:textSize="12dp"/>
 
             <EditText
                 android:id="@+id/profile_age_id"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:background="#ffffff"
+                android:layout_height="30dp"
+                android:background="@drawable/profile_border"
                 android:cursorVisible="false"
                 android:ems="10"
                 android:hint="@string/age"
                 android:inputType="number"
                 android:paddingStart="10dp"
                 />
-        </android.support.design.widget.TextInputLayout>
+
+        <android.support.v4.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Blood Group"
+            android:paddingLeft="8dp"
+            android:textSize="12dp"/>
 
         <Spinner
             android:id="@+id/profile_spinner"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="30dp"
+            android:background="@drawable/profile_border"
             android:autofillHints="Group"
             tools:targetApi="o" />
 
@@ -162,7 +178,7 @@
             android:layout_width="80dp"
             android:layout_height="42dp"
             android:layout_centerHorizontal="true"
-            android:background="#EF5350"
+            android:background="@drawable/round_corner_button"
             android:text="Save"
             android:textColor="@android:color/white"
             android:textSize="16dp" />

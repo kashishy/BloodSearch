@@ -41,7 +41,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ProfileActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private CircleImageView user_image;
-    private EditText profile_email;
+   // private EditText profile_email;
     private EditText profile_name;
     private EditText profile_mobile;
     private EditText profile_state;
@@ -85,7 +85,7 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
             @Override
             public void onClick(View v) {
                 String name,mobile,city,state,age,blood,email;
-                email=profile_email.getText().toString().trim();
+                //email=profile_email.getText().toString().trim();
                 name=profile_name.getText().toString().trim();
                 mobile=profile_mobile.getText().toString().trim();
                 city=profile_city.getText().toString().trim();
@@ -93,7 +93,7 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
                 age=profile_age.getText().toString().trim();
                 blood=profile_blood.getSelectedItem().toString().trim();
                 name = changeCase(name);
-                email=changeCase(email);
+                //email=changeCase(email);
                 state = changeCase(state);
                 city = changeCase(city);
                 name = toTitleCase(name);
@@ -196,7 +196,7 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
                     String Usermobile=dataSnapshot.child("mobile").getValue().toString();
                     String Userblood=dataSnapshot.child("blood_group").getValue().toString();
                     String Userimage=dataSnapshot.child("image").getValue().toString();
-                    String Useremail=dataSnapshot.child("email").getValue().toString();
+                    //String Useremail=dataSnapshot.child("email").getValue().toString();
                     int i;
                     for(i=0;i<8;i++)
                     {
@@ -210,7 +210,7 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
                     profile_name.setText(Username);
                     profile_mobile.setText(Usermobile);
                     profile_state.setText(Userstate);
-                    profile_email.setText(Useremail);
+                    //profile_email.setText(Useremail);
                     int position = getIntent().getIntExtra( Userblood,i);
                     profile_blood.setSelection( position );
                     Picasso.get().load(Userimage).into(user_image);
@@ -224,7 +224,7 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
                     String Userage=dataSnapshot.child("age").getValue().toString();
                     String Usermobile=dataSnapshot.child("mobile").getValue().toString();
                     String Userblood=dataSnapshot.child("blood_group").getValue().toString();
-                    String Useremail=dataSnapshot.child("email").getValue().toString();
+                    //String Useremail=dataSnapshot.child("email").getValue().toString();
                     int i;
                     for(i=0;i<8;i++)
                     {
@@ -238,7 +238,7 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
                     profile_name.setText(Username);
                     profile_mobile.setText(Usermobile);
                     profile_state.setText(Userstate);
-                    profile_email.setText(Useremail);
+                    //profile_email.setText(Useremail);
                     int position = getIntent().getIntExtra( Userblood,i);
                     profile_blood.setSelection( position );
                     Picasso.get().load(R.drawable.drawerimageicon).into(user_image);
@@ -263,7 +263,7 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
         profile_state=findViewById(R.id.profile_state_id);
         profile_age=findViewById(R.id.profile_age_id);
         profile_city=findViewById(R.id.profile_city_id);
-        profile_email=findViewById(R.id.profile_email_id);
+        //profile_email=findViewById(R.id.profile_email_id);
         profile_blood=findViewById(R.id.profile_spinner);
         progressBar = new ProgressBar(this);
         firebaseAuth = FirebaseAuth.getInstance();

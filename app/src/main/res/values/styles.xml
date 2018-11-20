@@ -9,4 +9,11 @@
         <item name="cardViewStyle">@style/CardView</item>
     </style>
 
+    <style name="button_style">
+        <item name="android:shadowDy">10</item>
+        <item name="android:shadowDx">10</item>
+        <item name="android:shadowRadius">10</item>
+        <item name="android:elevation">10dp</item>
+    </style>
+
 </resources>

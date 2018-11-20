@@ -32,7 +32,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="64dp"
-            android:background="@drawable/logintext"
+            android:background="@drawable/border"
             android:ems="10"
             android:hint="Name"
             android:inputType="textPersonName"
@@ -45,7 +45,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="12dp"
-            android:background="@drawable/logintext"
+            android:background="@drawable/border"
             android:ems="10"
             android:hint="@string/email"
             android:inputType="textPersonName"
@@ -65,7 +65,7 @@
             android:layout_width="310dp"
             android:layout_height="42dp"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/logintext"
+            android:background="@drawable/border"
             android:ems="10"
             android:hint="@string/mobile_number"
             android:inputType="phone"
@@ -78,7 +78,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignStart="@+id/Rmobile_id"
             android:layout_marginTop="53dp"
-            android:background="@drawable/logintext"
+            android:background="@drawable/border"
             android:ems="10"
             android:hint="@string/state"
             android:inputType="textPersonName"
@@ -90,7 +90,7 @@
             android:layout_height="42dp"
             android:layout_alignEnd="@+id/Rmobile_id"
             android:layout_alignTop="@+id/Rstate_id"
-            android:background="@drawable/logintext"
+            android:background="@drawable/border"
             android:ems="10"
             android:hint="@string/city"
             android:inputType="textPersonName"
@@ -111,7 +111,7 @@
             android:layout_alignStart="@+id/Rmobile_id"
             android:layout_marginBottom="19dp"
             android:autofillHints="Group"
-            android:background="@drawable/logintext"
+            android:background="@drawable/border"
             tools:targetApi="o" />
 
     </RelativeLayout>
@@ -121,7 +121,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/layout2"
         android:layout_centerHorizontal="true"
-        android:background="#F44336"
+        android:background="@drawable/round_corner_button"
         android:text="Request"
         android:textColor="#ffffff" />
 

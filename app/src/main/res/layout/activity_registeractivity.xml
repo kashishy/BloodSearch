@@ -148,7 +148,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/layout2"
         android:layout_centerHorizontal="true"
-        android:background="#F44336"
+        android:background="@drawable/round_corner_button"
         android:text="@string/register"
         android:textColor="#ffffff" />
 
