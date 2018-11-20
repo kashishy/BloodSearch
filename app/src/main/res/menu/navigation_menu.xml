@@ -5,10 +5,7 @@
             android:title="@string/profile"
             android:id="@+id/profile_id"
             android:icon="@drawable/account"/>
-        <item
-            android:title="Setting"
-            android:id="@+id/setting_id"
-            android:icon="@drawable/settings"/>
+
         <item
             android:title="Logout"
             android:id="@+id/logout_id"

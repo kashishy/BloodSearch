@@ -21,4 +21,35 @@ public class User {
         this.blood_group = blood_group;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getBlood_group() {
+        return blood_group;
+    }
 }

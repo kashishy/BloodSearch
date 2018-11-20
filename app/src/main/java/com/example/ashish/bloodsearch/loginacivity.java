@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,6 +24,7 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 public class loginacivity extends AppCompatActivity {
 
     EditText login_email,login_password;
+    TextView newuser,forgot;
     FirebaseAuth firebaseAuth;
     ProgressBar progressBar;
     Button loginbutton,registerbutton;
@@ -32,6 +34,8 @@ public class loginacivity extends AppCompatActivity {
         setContentView(R.layout.activity_loginacivity);
 
         login_email=findViewById(R.id.login_email_id);
+        newuser=findViewById(R.id.new_id);
+        forgot=findViewById(R.id.forgot_id);
         login_password=findViewById(R.id.login_password_id);
         loginbutton=findViewById(R.id.login_button_id);
         registerbutton=findViewById(R.id.register_button_id);
@@ -66,10 +70,17 @@ public class loginacivity extends AppCompatActivity {
                 }
             }
         });
-        registerbutton.setOnClickListener(new View.OnClickListener() {
+        newuser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(loginacivity.this,registeractivity.class);
+                startActivity(intent);
+            }
+        });
+        forgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(loginacivity.this,password_reset.class);
                 startActivity(intent);
             }
         });

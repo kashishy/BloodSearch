@@ -36,10 +36,12 @@ public class registeractivity extends AppCompatActivity implements AdapterView.O
     ProgressBar progressBar;
     String email_text,password_text;
     EditText name,email,password,mobile_number,age,state,city,blood_group;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registeractivity);
+
         spinner=findViewById(R.id.spinner_id);
         ArrayAdapter<CharSequence> arrayAdapter=ArrayAdapter.createFromResource(this, R.array.numbers,android.R.layout.simple_spinner_item);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -48,6 +50,7 @@ public class registeractivity extends AppCompatActivity implements AdapterView.O
 
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference= FirebaseDatabase.getInstance().getReference("users_data");
+        databaseReference.keepSynced(true);
 
         name = findViewById(R.id.name_edittext_id);
         email = findViewById(R.id.email_id);

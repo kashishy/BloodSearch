@@ -1,14 +1,18 @@
 package com.example.ashish.bloodsearch;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -41,11 +45,8 @@ public class show_donor extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         users = new ArrayList<>();
 
-        /*users.add(new User(
-
-        ));*/
-
         databaseReference = FirebaseDatabase.getInstance().getReference("registered_donors");
+        databaseReference.keepSynced(true);
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -60,7 +61,6 @@ public class show_donor extends AppCompatActivity {
                     }
                     recyclerAdapter = new recycler_adapter(users, show_donor.this);
                     recyclerView.setAdapter(recyclerAdapter);
-                    //Toast.makeText(show_donor.this,"Loaded",Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -73,19 +73,4 @@ public class show_donor extends AppCompatActivity {
         });
     }
 
-    public void callNumber(String number) {
-        Intent callIntent = new Intent(Intent.ACTION_CALL);
-        callIntent.setData(Uri.parse("tel" + number));
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        startActivity(callIntent);
-    }
 }

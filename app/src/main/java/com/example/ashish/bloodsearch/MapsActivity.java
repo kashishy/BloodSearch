@@ -10,6 +10,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -37,6 +38,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Location lastLocation;
     private Marker currentLocationMarker;
     public static final int REQUEST_LOCATION_CODE=99;
+    int PROXIMITY_RADIUS=10000;
+    double latitude,longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,13 +107,37 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         markerOptions.position(latLng);
         markerOptions.title("Current Loaction");
         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
-        currentLocationMarker =mMap.addMarker(markerOptions);
+       // currentLocationMarker =mMap.addMarker(markerOptions);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         mMap.animateCamera(CameraUpdateFactory.zoomBy(10));
         if(client!=null){
             LocationServices.FusedLocationApi.removeLocationUpdates(client,this);
         }
 
+    }
+
+    public void onClick(){
+        Object dataTransfer[]=new Object[2];
+        GetNearbyPlaces getNearbyPlaces=new GetNearbyPlaces();
+        //mMap.clear();
+        String blood="Blood";
+        String url = getUrl(latitude,longitude,blood);
+        dataTransfer[0] = mMap;
+        dataTransfer[1] = url;
+        getNearbyPlaces.execute(dataTransfer);
+        Toast.makeText(this,"Nearby Blood Banks",Toast.LENGTH_LONG).show();
+    }
+
+    private String getUrl(double latitude,double longitute,String nearByPlace){
+
+        StringBuilder googlePlaceUrl=new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
+        googlePlaceUrl.append("location="+latitude+","+longitute);
+        googlePlaceUrl.append("&radius="+PROXIMITY_RADIUS);
+        googlePlaceUrl.append("&type="+nearByPlace);
+        googlePlaceUrl.append("&sensor=true");
+        googlePlaceUrl.append("&key="+"AIzaSyCxYej9YOrZafmqPdSVtSEFUS0PksqRJ7o");
+        Log.d("MapsActivity", "url = "+googlePlaceUrl.toString());
+        return googlePlaceUrl.toString();
     }
 
     @Override
@@ -152,4 +179,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
+
+   /*@Override
+    protected void onStart() {
+        super.onStart();
+        onClick();
+    }*/
 }

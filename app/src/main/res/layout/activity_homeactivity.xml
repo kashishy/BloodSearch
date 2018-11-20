@@ -96,6 +96,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
+                android:id="@+id/request"
                 android:gravity="center">
                 <ImageView
                     android:layout_width="60dp"
@@ -146,37 +147,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/secondview"
-        android:gravity="center"
         android:id="@+id/thirdview"
-        android:orientation="horizontal">
-        <android.support.v7.widget.CardView
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:layout_margin="10dp"
-            app:cardElevation="10dp"
-            android:id="@+id/blood_bank_id"
-            app:cardCornerRadius="6dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center">
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/bloodbank1"
-                    android:contentDescription="@string/todo" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="8dp"
-                    android:text="@string/blood_banks"
-                    android:textColor="#F44336"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </android.support.v7.widget.CardView>
+        android:gravity="center"
+        android:paddingRight="155dp"
+        android:orientation="vertical">
         <android.support.v7.widget.CardView
             android:layout_width="140dp"
             android:layout_height="140dp"

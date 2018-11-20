@@ -32,29 +32,32 @@
         android:layout_marginTop="240dp"
         android:layout_below="@+id/upper"
         tools:ignore="InvalidId">
+
         <EditText
             android:id="@+id/login_email_id"
-            android:layout_width="310dp"
+            android:layout_width="280dp"
             android:layout_height="45dp"
             android:layout_alignStart="@+id/login_password_id"
             android:background="@drawable/logintext"
+            android:drawableStart="@drawable/email_icon"
             android:ems="10"
-            android:hint="Email"
-            android:paddingStart="10dp"
-            android:inputType="textEmailAddress" />
+            android:hint="Email..."
+            android:inputType="textEmailAddress"
+            android:paddingStart="5dp" />
 
         <EditText
             android:id="@+id/login_password_id"
-            android:layout_width="310dp"
+            android:layout_width="280dp"
             android:layout_height="45dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="15dp"
             android:background="@drawable/logintext"
+            android:drawableStart="@drawable/lock_icon"
             android:ems="10"
-            android:hint="Password"
+            android:hint="Password..."
             android:inputType="textPassword"
-            android:paddingLeft="10dp" />
+            android:paddingLeft="5dp" />
         <ProgressBar
             android:id="@+id/progress_id"
             android:layout_width="wrap_content"
@@ -69,12 +72,14 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="205dp"
+        android:layout_below="@+id/middle"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/middle">
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="-3dp">
 
         <Button
             android:id="@+id/login_button_id"
-            android:layout_width="120dp"
+            android:layout_width="280dp"
             android:layout_height="45dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
@@ -84,26 +89,32 @@
             android:text="login"
             android:textColor="#ffffff" />
 
-        <Button
-            android:id="@+id/register_button_id"
-            android:layout_width="120dp"
-            android:layout_height="45dp"
-            android:layout_below="@+id/textView"
-            android:layout_centerHorizontal="true"
-            android:background="#F44336"
-            android:elevation="10dp"
-            android:text="Register"
-            android:textColor="#FFFFFF" />
+        <TextView
+            android:id="@+id/forgot_id"
+            android:layout_width="125dp"
+            android:layout_height="35dp"
+            android:layout_below="@id/login_button_id"
+            android:layout_alignEnd="@id/login_button_id"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Forgot Password ?"
+            android:textSize="15dp"
+            android:textColor="#F44336"/>
 
         <TextView
-            android:id="@+id/textView"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_below="@+id/login_button_id"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="@font/amita"
-            android:text="OR"
-            android:textColor="#F35F5F" />
+            android:id="@+id/new_id"
+            android:layout_width="83dp"
+            android:layout_height="35dp"
+            android:layout_below="@id/login_button_id"
+            android:layout_alignStart="@id/login_button_id"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="New user ?"
+            android:textSize="15dp"
+            android:textColor="#F44336"/>
+
     </RelativeLayout>
 
 </RelativeLayout>

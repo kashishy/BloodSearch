@@ -37,6 +37,7 @@ public class active_request_activity extends AppCompatActivity {
         users=new ArrayList<>();
 
         databaseReference= FirebaseDatabase.getInstance().getReference("blood_requests");
+        databaseReference.keepSynced(true);
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override

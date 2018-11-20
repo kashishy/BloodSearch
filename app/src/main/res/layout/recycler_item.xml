@@ -78,7 +78,7 @@
                 android:layout_alignParentTop="true"
                 android:orientation="vertical">
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/call_image_id"
                     android:layout_width="40dp"
                     android:layout_height="40dp"

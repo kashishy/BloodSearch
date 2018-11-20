@@ -43,6 +43,7 @@ public class add_donor_activity extends AppCompatActivity implements AdapterView
 
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("registered_donors");
+        databaseReference.keepSynced(true);
 
         name = findViewById(R.id.name_id);
         email = findViewById(R.id.email_id);

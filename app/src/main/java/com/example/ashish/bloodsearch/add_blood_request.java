@@ -43,6 +43,7 @@ public class add_blood_request extends AppCompatActivity implements AdapterView.
 
         firebaseAuth=FirebaseAuth.getInstance();
         databaseReference= FirebaseDatabase.getInstance().getReference("blood_requests");
+        databaseReference.keepSynced(true);
 
         name=findViewById(R.id.Rname_id);
         email=findViewById(R.id.Remail_id);
