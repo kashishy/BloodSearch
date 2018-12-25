@@ -46,9 +46,9 @@ public class loginacivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 boolean datacheck=checkDataEntered();
-                progressBar.setVisibility(View.VISIBLE);
+                //progressBar.setVisibility(View.VISIBLE);
                 if(datacheck) {
-                    //progressBar.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.VISIBLE);
                     firebaseAuth.signInWithEmailAndPassword(login_email.getText().toString().trim(),login_password.getText().toString().trim())
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -113,16 +113,5 @@ public class loginacivity extends AppCompatActivity {
          {
              return true;
          }
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if(firebaseAuth.getCurrentUser()!=null){
-            finish();
-            Intent intent=new Intent(loginacivity.this,homeactivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-        }
     }
 }
