@@ -1,5 +1,6 @@
 package com.example.ashish.bloodsearch;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.preference.PreferenceManager;
@@ -56,6 +57,7 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
     private StorageReference storageReference;
     private String user_id;
     private ProgressBar progressBar;
+    private ProgressDialog progressDialog;
     private String blood[]={"A+","A-","B+","B-","AB+","AB-","O+","O-"};
             Spinner profile_blood;
 
@@ -101,15 +103,19 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
                 city = toTitleCase(city);
 
                 profile_edit user=new profile_edit(age,blood,city,mobile,name,state);
+
+                progressDialog.show();
                 databaseReference.child(user_id).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful())
                         {
+                            progressDialog.dismiss();
                             Toast.makeText(ProfileActivity.this,"Profile Updated Successfully.",Toast.LENGTH_SHORT).show();
                         }
                         else
                         {
+                            progressDialog.dismiss();
                             Toast.makeText(ProfileActivity.this,task.getException().toString(),Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -270,6 +276,11 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
         databaseReference= FirebaseDatabase.getInstance().getReference("users_data");
         profile_save_button=findViewById(R.id.profile_save_id);
         storageReference=FirebaseStorage.getInstance().getReference().child("Profile_images");
+
+        progressDialog=new ProgressDialog(this);
+        progressDialog.setTitle("Profile");
+        progressDialog.setMessage("Updating Please Wait");
+        progressDialog.setCancelable(false);
     }
 
     public String changeCase(String a){

@@ -1,5 +1,6 @@
 package com.example.ashish.bloodsearch;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -23,17 +24,22 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class loginacivity extends AppCompatActivity {
 
-    EditText login_email,login_password;
-    TextView newuser,forgot;
-    FirebaseAuth firebaseAuth;
-    ProgressBar progressBar;
-    Button loginbutton,registerbutton;
+    private EditText login_email,login_password;
+    private TextView newuser,forgot;
+    private FirebaseAuth firebaseAuth;
+    private ProgressBar progressBar;
+    private ProgressDialog progressDialog;
+    private Button loginbutton,registerbutton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loginacivity);
 
         login_email=findViewById(R.id.login_email_id);
+        progressDialog=new ProgressDialog(this);
+        progressDialog.setTitle("Login");
+        progressDialog.setMessage("Login In Please Wait");
+        progressDialog.setCancelable(false);
         newuser=findViewById(R.id.new_id);
         forgot=findViewById(R.id.forgot_id);
         login_password=findViewById(R.id.login_password_id);
@@ -48,12 +54,14 @@ public class loginacivity extends AppCompatActivity {
                 boolean datacheck=checkDataEntered();
                 //progressBar.setVisibility(View.VISIBLE);
                 if(datacheck) {
-                    progressBar.setVisibility(View.VISIBLE);
+                    //progressBar.setVisibility(View.VISIBLE);
+                    progressDialog.show();
                     firebaseAuth.signInWithEmailAndPassword(login_email.getText().toString().trim(),login_password.getText().toString().trim())
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                           progressBar.setVisibility(View.INVISIBLE);
+                           //progressBar.setVisibility(View.INVISIBLE);
+                           progressDialog.dismiss();
                             if(task.isSuccessful()){
                                 finish();
                                 Toast.makeText(loginacivity.this,"Login Successful",Toast.LENGTH_SHORT).show();
@@ -66,7 +74,8 @@ public class loginacivity extends AppCompatActivity {
                         }
                     });
                 }else{
-                    progressBar.setVisibility(View.INVISIBLE);
+                    //progressBar.setVisibility(View.INVISIBLE);
+                    progressDialog.dismiss();
                 }
             }
         });

@@ -1,5 +1,6 @@
 package com.example.ashish.bloodsearch;
 
+import android.app.ProgressDialog;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ public class add_donor_activity extends AppCompatActivity implements AdapterView
     EditText name,email,mobile,city,state,age;
     private Button add_button;
     private ProgressBar progressBar;
+    private ProgressDialog progressDialog;
     private Spinner spinner;
 
     @Override
@@ -53,12 +55,17 @@ public class add_donor_activity extends AppCompatActivity implements AdapterView
         age = findViewById(R.id.age_id);
         add_button = findViewById(R.id.add_button_id);
         progressBar = findViewById(R.id.progressbar_id);
+        progressDialog=new ProgressDialog(this);
+        progressDialog.setTitle("As Donor");
+        progressDialog.setMessage("Adding Please Wait");
+        progressDialog.setCancelable(false);
 
         add_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                progressBar.setVisibility(View.VISIBLE);
+                //progressBar.setVisibility(View.VISIBLE);
+                progressDialog.show();
                 if (checkDataEntered()) {
                     String donor_id, donor_name, donor_email, donor_mobile, donor_city, donor_state, donor_age, donor_blood;
                     donor_id = firebaseAuth.getCurrentUser().getUid();
@@ -83,7 +90,8 @@ public class add_donor_activity extends AppCompatActivity implements AdapterView
                     databaseReference.child(donor_id).setValue(userDonors).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            progressBar.setVisibility(View.INVISIBLE);
+                            //progressBar.setVisibility(View.INVISIBLE);
+                            progressDialog.dismiss();
                             if (task.isSuccessful()) {
                                 Toast.makeText(add_donor_activity.this, "Added Successfully", Toast.LENGTH_SHORT).show();
                                 finish();
@@ -95,7 +103,8 @@ public class add_donor_activity extends AppCompatActivity implements AdapterView
                 }
                 else
                 {
-                    progressBar.setVisibility(View.INVISIBLE);
+                    progressDialog.dismiss();
+                    //progressBar.setVisibility(View.INVISIBLE);
                 }
             }
         });

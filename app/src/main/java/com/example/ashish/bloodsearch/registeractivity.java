@@ -1,5 +1,6 @@
 package com.example.ashish.bloodsearch;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -34,6 +35,7 @@ public class registeractivity extends AppCompatActivity implements AdapterView.O
     DatabaseReference databaseReference;
     FirebaseUser firebaseUser;
     ProgressBar progressBar;
+    private ProgressDialog progressDialog;
     String email_text,password_text;
     EditText name,email,password,mobile_number,age,state,city,blood_group;
 
@@ -63,17 +65,23 @@ public class registeractivity extends AppCompatActivity implements AdapterView.O
         email_text = email.getText().toString();
         password_text = password.getText().toString();
         register_button = findViewById(R.id.register_button_id);
+        progressDialog=new ProgressDialog(this);
+        progressDialog.setTitle("Register");
+        progressDialog.setMessage("Registring Please Wait");
+        progressDialog.setCancelable(false);
 
         register_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressBar.setVisibility(View.VISIBLE);
+                //progressBar.setVisibility(View.VISIBLE);
+                progressDialog.show();
                 if (checkDataEntered()) {
                     firebaseAuth.createUserWithEmailAndPassword(email.getText().toString().trim(), password.getText().toString().trim())
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
-                                    progressBar.setVisibility(View.GONE);
+                                    progressDialog.dismiss();
+                                    //progressBar.setVisibility(View.GONE);
                                     if (task.isSuccessful()) {
 
                                         String user_id, user_name, user_email, user_password, user_mobile, user_city, user_state, user_age, user_blood;
@@ -121,7 +129,8 @@ public class registeractivity extends AppCompatActivity implements AdapterView.O
                 }
                 else
                 {
-                    progressBar.setVisibility(View.INVISIBLE);
+                    progressDialog.dismiss();
+                    //progressBar.setVisibility(View.INVISIBLE);
                 }
             }
         });

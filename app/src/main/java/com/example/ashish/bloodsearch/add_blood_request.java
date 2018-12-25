@@ -1,5 +1,6 @@
 package com.example.ashish.bloodsearch;
 
+import android.app.ProgressDialog;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ public class add_blood_request extends AppCompatActivity implements AdapterView.
     private EditText name,email,mobile,state,city,blood;
     private Button request_button;
     private ProgressBar progressBar;
+    private ProgressDialog progressDialog;
     Spinner spinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,12 +54,17 @@ public class add_blood_request extends AppCompatActivity implements AdapterView.
         city=findViewById(R.id.Rcity_id);
         progressBar=findViewById(R.id.Rprogressbar_id);
         request_button=findViewById(R.id.request_button_id);
+        progressDialog=new ProgressDialog(this);
+        progressDialog.setTitle("Blood Request");
+        progressDialog.setMessage("Adding Please Wait");
+        progressDialog.setCancelable(false);
 
         request_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                progressBar.setVisibility(View.VISIBLE);
+               // progressBar.setVisibility(View.VISIBLE);
+                progressDialog.show();
                 if (checkDataEntered()) {
 
                     String request_id, request_name, request_email, request_mobile, request_city, request_state, request_blood;
@@ -83,7 +90,8 @@ public class add_blood_request extends AppCompatActivity implements AdapterView.
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
 
-                            progressBar.setVisibility(View.INVISIBLE);
+                            //progressBar.setVisibility(View.INVISIBLE);
+                            progressDialog.dismiss();
                             if (task.isSuccessful()) {
                                 Toast.makeText(add_blood_request.this, "Request Successfully Added", Toast.LENGTH_SHORT).show();
                                 finish();
@@ -95,7 +103,8 @@ public class add_blood_request extends AppCompatActivity implements AdapterView.
                 }
                 else
                 {
-                    progressBar.setVisibility(View.INVISIBLE);
+                    progressDialog.dismiss();
+                    //progressBar.setVisibility(View.INVISIBLE);
                 }
             }
         });
